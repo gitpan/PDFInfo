@@ -1,11 +1,11 @@
-PDFInfo is a PERL script that permits you to modify some fields of the Info
+PDFInfo is a script PERL that permits you to modify some fields of the Info
 dictionary in PDF files.
 At the moment, the fields are: /Author /Creator /CreationDate /ModDate
                                /Producer
 You can find a complete documentation about Info dictionary in docs directory.
 It should work with PERL 4.x and 5.x.
 
-This is the syntax
+This is the sintax
 
 
 usage:
@@ -23,6 +23,9 @@ where options include:
     -producer                    change the original /Producer() field with the
                                  specified in configuration file
     -help                        print out this message
+    -verbose                     verbose
+    -filecfg file                use the file like configuration file
+                                 (default pdfinfo.cfg)
 
 PDF_files:
     with files you can use metacharacters and relative and absolute path name
@@ -30,7 +33,7 @@ PDF_files:
 example:
     pdfinfo *.pdf
     pdfinfo -h
-    pdfinfo -a -p -v
+    pdfinfo -a -p -v */*.pdf
 
 If you want to know more about this tool, you might want
 to read the docs. They came together with pdfinfo!

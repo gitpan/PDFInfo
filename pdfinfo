@@ -1,20 +1,20 @@
 #!/usr/local/bin/perl
 # pdfinfo         -- a perl script to modify Info dictionary in PDF files
 #
-# by Fabrizio Pivari <pivari@geocities.com.it> 10 Jannuary 1998
+# by Fabrizio Pivari <pivari@geocities.com> 10 Jannuary 1998
 #                    http://www.geocities.com/CapeCanaveral/Lab/3469/
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is the version 1.0.
+# This is the version 1.1.
 #
 
-$version="1.0";
-$configure="pdfinfo.cfg";
+$version="1.1";
+$opt_filecfg="pdfinfo.cfg";
 require "newgetopt.pl";
-do NGetOpt("help","author","creator","producer",
+do NGetOpt("filecfg=s","help","verbose","author","creator","producer",
            "datecreation","moddate") || &printusage ;  
 @elem=("PDF_Author","PDF_Creator","PDF_Producer","PDF_CreationDate",
        "PDF_ModDate");
@@ -24,8 +24,10 @@ do NGetOpt("help","author","creator","producer",
       PDF_Producer     => "PDFInfo version $version",
       PDF_CreationDate => "D: 196401250125+01'00'",
       PDF_ModDate      => "D: 196401250125+01'00'");
+$verbose=0;
+if ($opt_verbose) {$verbose=1}
 if ($opt_help) {&printusage};
-open (CNF, "$configure") || die "Error: $configure - $!\n";
+open (CNF, "$opt_filecfg") || die "Error: $opt_filecfg - $!\n";
 while (<CNF>)
    {
    s/\t/ /g;  #replace tabs by space
@@ -35,7 +37,6 @@ while (<CNF>)
       {if (/[ \t]*$elem[ \t]*:[ \t]*(.*)/i) {$option{$elem}=$1;}}
    }
 close(CNF);
-$passwd=$opt_passwd;
 if (@ARGV)
    {
    foreach $x (@ARGV)
@@ -43,6 +44,7 @@ if (@ARGV)
       $authorcounter=0; $creatorcounter=0; $producercounter=0;
       $creationdatecounter=0; $moddatecounter=0;
       $file = $x;
+      if($verbose eq 1) {print "Analizing PDF file: $file\n";}
       $old = $file;
       $new = "$file.tmp.$$";
       $bak = "$file.bak";
@@ -56,6 +58,8 @@ if (@ARGV)
             $authorcounter++;
             if ($authorcounter eq 1)
                {
+               if($verbose eq 1) 
+                  {print "Changed Author   with $option{'PDF_Author'}\n";}
                print NEW qq!/Author($option{'PDF_Author'})\n!;
                }
             }
@@ -64,6 +68,8 @@ if (@ARGV)
             $creatorcounter++;
             if ($creatorcounter eq 1)
                {
+               if($verbose eq 1) 
+                  {print "Changed Creator  with $option{'PDF_Creator'}\n";}
                print NEW qq!/Creator($option{'PDF_Creator'})\n!;
                }
             }
@@ -72,6 +78,8 @@ if (@ARGV)
             $producercounter++;
             if ($producercounter eq 1)
                {
+               if($verbose eq 1) 
+                  {print "Changed Producer with $option{'PDF_Producer'}\n";}
                print NEW qq!/Producer($option{'PDF_Producer'})\n!;
                }
             }
@@ -80,6 +88,8 @@ if (@ARGV)
             $creationdatecounter++;
             if ($creationdatecounter eq 1)
                {
+               if($verbose eq 1)
+                  {print "Changed CreationDate with $option{'PDF_CreationDate'}\n";}
                print NEW qq!/CreationDate($option{'PDF_CreationDate'})\n!;
                }
             }
@@ -88,6 +98,8 @@ if (@ARGV)
             $moddatecounter++;
             if ($moddatecounter eq 1)
                {
+               if($verbose eq 1)
+                  {print "Changed ModDate with $option{'PDF_ModDate'}\n";}
                print NEW qq!/ModDate($option{'PDF_ModDate'})\n!;
                }
             }
@@ -118,6 +130,9 @@ where options include:
     -producer                    change the original /Producer() field with
                                  the specified in configuration file
     -help                        print out this message
+    -verbose                     verbose
+    -filecfg file                use the file like configuration file
+                                 (default pdfinfo.cfg)
 
 PDF_files:
     with files you can use metacharacters and relative and absolute path name
@@ -125,7 +140,7 @@ PDF_files:
 example:
     pdfinfo *.pdf
     pdfinfo -h
-    pdfinfo -a -p -v
+    pdfinfo -a -p -v */*.pdf
 
 If you want to know more about this tool, you might want
 to read the docs. They came together with pdfinfo!

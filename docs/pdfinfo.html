@@ -11,13 +11,18 @@ Fabrizio Pivari (Pivari@geocities.com) on 11/20/97-->
 <BODY BGCOLOR="#ffffff">
 <H1>PDFInfo: to modify some fields of the Info dictionary in PDF files</H1>
 <H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
-<H4>version 1.0 1997/11/20</H4>
+<H4>version 1.1 1997/11/28</H4>
 
 PDFInfo is a PERL script that permits you to modify some fields of the Info
 dictionary in PDF files.
 At the moment, the fields are: /Author /Creator /CreationDate /ModDate
 /Producer<BR>
 It should work with PERL 4.x and 5.x.<P>
+
+<A HREF="IndexMaker.tar.gz">Source Code</A><BR>
+<IMG SRC="new.gif" WIDTH=28 HEIGHT=11>You can also find the source code at
+<A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
+CPAN authors/Fabrizio_Pivari/</A><P>
 
 This is the syntax
 
@@ -37,6 +42,9 @@ where options include:
     -producer                    change the original /Producer() field with the
                                  specified in configuration file
     -help                        print out this message
+    -verbose                     verbose
+    -filecfg file                use the file like configuration file
+                                 (default pdfinfo.cfg)
 
 PDF_files:
     with files you can use metacharacters and relative and absolute path name
@@ -44,11 +52,15 @@ PDF_files:
 example:
     pdfinfo *.pdf
     pdfinfo -h
-    pdfinfo -a -p -v
+    pdfinfo -a -p -v */*.pdf
 
 </PRE>
-The default of the configuration file is pdfinfo.cfg. At the moment, if you
-want to change this name you have to change the variable $configure in the
-script.
+
+What's new with version 1.1:
+<UL>
+<LI>New options: verbose, configure file</LI>
+<LI>Added tests directory</LI>
+</UL>
+
 </BODY>
 </HTML>
