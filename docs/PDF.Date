@@ -1,0 +1,31 @@
+PDF 1.2 page 133
+http://www.adobe.com/supportservice/devrelations/PDFS/TN/PDFSPEC.PDF
+
+7.2 Date
+PDF defines a standard date format. The PDF date format closely follows the
+format defined by the international standard ASN.1 (Abstract Syntax Notation
+One, defined in CCITT X.208 or ISO/IEC 8824). A date is a string of the form:
+(D: YYYYMMDDHHmmSSOHH' mm')
+where
+° YYYY is the year.
+° MM is the month (01Ð 12).
+° DD is the day (01Ð 31).
+° HH is the hour (00Ð 23).
+° mm are the minutes (00-59).
+° SS are the seconds (00-59).
+° O is the relation of local time to GMT, where + indicates that local time is
+  later than GMT, - indicates that local time is earlier than GMT, and Z
+  indicates that local time is GMT.
+° HH is the absolute value of the offset from GMT in hours. The quote (') is
+  part of the syntax.
+° mm is the absolute value of the offset from GMT in minutes. The quote (') is
+  part of the syntax.
+Example:
+D:199512231952-08'00'
+The D: prefix permits arbitrary keys to be recognized as dates. However, it is
+not required. Trailing fields other than the year are also optional. The
+default value for day and month is 1; all other numerical fields default to 0.
+If no GMT information is specified, the relationship of the specified time to
+GMT is considered unknown.
+Whether the time zone is known or not, the rest of the date should be specified
+in local time.

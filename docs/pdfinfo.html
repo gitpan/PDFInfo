@@ -1,0 +1,54 @@
+<!-- PDFInfo: a PERL script that permits you to modify some fields of the Info
+dictionary in PDF files designed by
+Fabrizio Pivari (Pivari@geocities.com) on 11/20/97-->
+
+<HTML>
+<HEAD>
+<META Name="Author" Content="Fabrizio Pivari">
+<TITLE>PDFInfo: to modify some fields of the Info dictionary in PDF files</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#ffffff">
+<H1>PDFInfo: to modify some fields of the Info dictionary in PDF files</H1>
+<H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
+<H4>version 1.0 1997/11/20</H4>
+
+PDFInfo is a PERL script that permits you to modify some fields of the Info
+dictionary in PDF files.
+At the moment, the fields are: /Author /Creator /CreationDate /ModDate
+/Producer<BR>
+It should work with PERL 4.x and 5.x.<P>
+
+This is the syntax
+
+<PRE>
+usage:
+        pdfinfo [-options ...] PDF_files
+
+where options include:
+    -author                      change the original /Author() field with the
+                                 specified in configuration file
+    -creator                     change the original /Creator() field with the
+                                 specified in configuration file
+    -datecreation                change the original /CreationDate() field with
+                                 the specified in configuration file
+    -moddate                     change the original /ModDate() field with the
+                                 specified in configuration file
+    -producer                    change the original /Producer() field with the
+                                 specified in configuration file
+    -help                        print out this message
+
+PDF_files:
+    with files you can use metacharacters and relative and absolute path name
+
+example:
+    pdfinfo *.pdf
+    pdfinfo -h
+    pdfinfo -a -p -v
+
+</PRE>
+The default of the configuration file is pdfinfo.cfg. At the moment, if you
+want to change this name you have to change the variable $configure in the
+script.
+</BODY>
+</HTML>

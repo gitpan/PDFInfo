@@ -1,0 +1,48 @@
+PDFInfo is a PERL script that permits you to modify some fields of the Info
+dictionary in PDF files.
+At the moment, the fields are: /Author /Creator /CreationDate /ModDate
+                               /Producer
+You can find a complete documentation about Info dictionary in docs directory.
+It should work with PERL 4.x and 5.x.
+
+This is the syntax
+
+
+usage:
+        pdfinfo [-options ...] PDF_files
+
+where options include:
+    -author                      change the original /Author() field with the
+                                 specified in configuration file
+    -creator                     change the original /Creator() field with the
+                                 specified in configuration file
+    -datecreation                change the original /CreationDate() field with
+                                 the specified in configuration file
+    -moddate                     change the original /ModDate() field with the
+                                 specified in configuration file
+    -producer                    change the original /Producer() field with the
+                                 specified in configuration file
+    -help                        print out this message
+
+PDF_files:
+    with files you can use metacharacters and relative and absolute path name
+    
+example:
+    pdfinfo *.pdf
+    pdfinfo -h
+    pdfinfo -a -p -v
+
+If you want to know more about this tool, you might want
+to read the docs. They came together with pdfinfo!
+
+Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pdfinfo.html
+
+Enjoy it!
+
+Send me your suggestions.
+
+     _/_/_/_/ _/_/_/     Fabrizio Pivari
+    _/       _/    _/   mailto:pivari@hotmail.com
+   _/_/_/   _/_/_/     mailto:pivari@yahoo.com
+  _/       _/         mailto:pivari@geocities.com
+ _/       _/         http://www.geocities.com/CapeCanaveral/Lab/3469/

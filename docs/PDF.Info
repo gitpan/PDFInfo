@@ -1,0 +1,27 @@
+PDF 1.2 page 110
+http://www.adobe.com/supportservice/devrelations/PDFS/TN/PDFSPEC.PDF
+
+6.11 Info dictionary
+
+A document's trailer may contain a reference to an Info dictionary that
+provides information about the document. This optional dictionary may contain
+one or more keys, whose values should be strings. These strings may be
+displayed in an Acrobat viewer's Document Info dialog. The characters in these
+strings are encoded using the predefined encoding PDFDocEncoding, described in
+Appendix C.
+Note Omit any key in the Info dictionary for which a value is not known, rather
+than including it with an empty string as its value.
+
+Key		Type	Semantics
+Author		string	(Optional) The name of the person who created the
+			document.
+CreationDate	Date	(Optional) The date the document was created.
+ModDate		Date	(Optional) The date the document was last modified.
+Creator		string	(Optional) If the document was converted into a PDF
+			document from another form, this is the name of the
+			application that created the original document.
+Producer	string	(Optional) The name of the application that converted
+			the document from its native format to PDF.
+Title		string	(Optional) The document's title.
+Subject		string	(Optional) The subject of the document.
+Keywords	string	(Optional) Keywords associated with the document.
